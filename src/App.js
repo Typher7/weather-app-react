@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+
+// Import the images
+import clearImage from './assets/clear_background.jpeg'
+import cloudyImage from './assets/cloudy_background.jpeg'
+import rainyImage from './assets/rainy_background.jpeg'
+import thunderstormImage from './assets/thunder.jpg'
+import snowyImage from './assets/snowy.jpg'
+import drizzleImage from './assets/trees.jpeg'
+import defaultImage from './assets/sunrise.jpg'
 
 function App() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
+  const [bgImage, setBgImage] = useState(defaultImage)
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 
@@ -18,10 +28,38 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (data.weather && data.weather[0]){
+      const weatherMain = data.weather[0].main.toLowerCase()
+      switch(weatherMain){
+        case 'clear':
+          setBgImage(clearImage)
+          break
+        case 'clouds':
+          setBgImage(cloudyImage)
+          break
+        case 'rain':
+          setBgImage(rainyImage)
+          break
+        case 'drizzle':
+          setBgImage(drizzleImage)
+          break
+        case 'thunderstorm':
+          setBgImage(thunderstormImage)
+          break
+        case 'snow':
+          setBgImage(snowyImage)
+          break
+        default:
+          setBgImage(defaultImage)
+      }
+    }
+  }, [data])
+
   return (  
     <div>
       <Navbar />
-    <div className="app">
+    <div className="app" style={{backgroundImage: bgImage}}>
       <div className="search">
         <input
           value={location}
