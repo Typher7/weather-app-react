@@ -16,6 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 p {
@@ -92,17 +93,22 @@ h1 {
   justify-content: space-evenly;
   text-align: center;
   width: 100%;
-  margin: 1rem auto;
+  margin: 10rem auto;
   padding: 1rem;
   border-radius: 12px;
   background-color: rgba(255,255,255, 0.2);
+  
 }
 
 .bold {
   font-weight: 700;
 }
 
-
+.error-message{
+  text-align: center;
+  font-size: 1.8rem;
+  
+}
 
 
 
