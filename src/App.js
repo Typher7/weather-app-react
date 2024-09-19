@@ -15,17 +15,31 @@ function App() {
   const [location, setLocation] = useState('')
   const [backgroundImage, setBackgroundImage] = useState(defaultImage)
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+  const API_KEY = '895284fb2d2c50a520ea537456963d9c'
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${API_KEY}`
 
-  const searchLocation = (event) => {
-    if (event.key === 'Enter') {
-      axios.get(url).then((response) => {
+  const fetchWeatherData = (city) => {
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`)
+      .then((response) => {
         setData(response.data)
         console.log(response.data)
       })
+      .catch((error) => {
+        console.error("Error fetching weather data:", error)
+      })
+  }
+
+  const searchLocation = (event) => {
+    if (event.key === 'Enter') {
+      fetchWeatherData(location)
       setLocation('')
     }
   }
+
+  useEffect(() => {
+    // Fetch weather data for New York on initial load
+    fetchWeatherData('New York')
+  }, [])
 
   useEffect(() => {
     if (data.weather && data.weather[0]) {
