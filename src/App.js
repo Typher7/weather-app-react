@@ -9,7 +9,6 @@ import rainyImage from './assets/rainy.jpg'
 import thunderstormImage from './assets/thunder.jpg'
 import snowyImage from './assets/snowy.jpg'
 import defaultImage from './assets/sunrise.jpg'
-import Contact from './Contact.js'
 
 function App() {
   const [data, setData] = useState({})
@@ -98,7 +97,6 @@ function App() {
         </div>
       </div>
       <div>
-        <Contact />
       </div>
     </div>
   );
