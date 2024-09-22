@@ -19,12 +19,9 @@ To run the weather application locally, follow these steps:
 1. Clone the repository:
 
    ```
-   git clone https://github.com/Typher7/weather-main.git
+   git clone https://github.com/Typher7/weather-app-react.git
    ```
 
-2. Open the `index.html` file in your web browser.
-
-That's it! The weather application should now be running on your local machine.
 
 ## Usage
 
